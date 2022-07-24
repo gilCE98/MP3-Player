@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "system_error": "c",
+        "locale": "c",
+        "thread": "c",
+        "xlocale": "c",
+        "xlocmes": "c",
+        "xlocmon": "c",
+        "xlocnum": "c",
+        "xloctime": "c",
+        "gpio.h": "c",
+        "gpio_isr.h": "c",
+        "periodic_scheduler.h": "c",
+        "acceleration.h": "c",
+        "ff.h": "c",
+        "cli_handlers.h": "c",
+        "cstdlib": "c",
+        "liquidcrystal_i2c.h": "c"
+    }
+}

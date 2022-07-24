@@ -6,8 +6,8 @@
 /// Note that some ports may not be available on your microcontroller
 typedef enum {
   GPIO__PORT_0 = 0,
-  GPIO__PORT_1,
-  GPIO__PORT_2,
+  GPIO__PORT_1 = 1,
+  GPIO__PORT_2 = 2,
   GPIO__PORT_3,
   GPIO__PORT_4,
   GPIO__PORT_5,
@@ -19,9 +19,9 @@ typedef enum {
  */
 typedef enum {
   GPIO__FUNCITON_0_IO_PIN = 0,
-  GPIO__FUNCTION_1,
+  GPIO__FUNCTION_1 = 0b001,
   GPIO__FUNCTION_2,
-  GPIO__FUNCTION_3,
+  GPIO__FUNCTION_3 = 0b011,
   GPIO__FUNCTION_4,
   GPIO__FUNCTION_5,
   GPIO__FUNCTION_6,

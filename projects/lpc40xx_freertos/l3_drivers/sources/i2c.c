@@ -190,6 +190,10 @@ bool i2c__write_slave_data(i2c_e i2c_number, uint8_t slave_address, uint8_t star
                        bytes_to_write, number_of_bytes_to_transfer);
 }
 
+bool i2c__write_LCD_data(i2c_e i2c_number, uint8_t slave_address, uint8_t starting_slave_memory_address) {
+  uint8_t temp;
+  return i2c__write_slave_data(i2c_number, slave_address, starting_slave_memory_address, &temp, -1);
+}
 /*******************************************************************************
  *
  *                     P R I V A T E    F U N C T I O N S
@@ -316,6 +320,10 @@ static bool i2c__handle_state_machine(i2c_s *i2c) {
     // No data to transfer, this is used just to test if the slave responds
     if (0 == i2c->number_of_bytes_to_transfer) {
       stop_sent = i2c__set_stop(lpc_i2c);
+    } else if (-1 == i2c->number_of_bytes_to_transfer) {
+      lpc_i2c->DAT = i2c->starting_slave_memory_address;
+      i2c->number_of_bytes_to_transfer = 0;
+      i2c__clear_si_flag_for_hw_to_take_next_action(lpc_i2c);
     } else {
       lpc_i2c->DAT = i2c->starting_slave_memory_address;
       i2c__clear_si_flag_for_hw_to_take_next_action(lpc_i2c);

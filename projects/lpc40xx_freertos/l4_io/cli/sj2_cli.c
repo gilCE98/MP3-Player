@@ -37,7 +37,15 @@ void sj2_cli__init(void) {
                                              "Outputs list of RTOS tasks, CPU and stack usage.\n"
                                              "tasklist <time>' will display CPU utilization within this time window.",
                                          .app_cli_handler = cli__task_list};
+  static app_cli__command_s your_cli_struct = {
+      .command_name = "taskcontrol", .help_message_for_command = "help message", .app_cli_handler = cli__task_control};
 
+  static app_cli__command_s mp3_player = {
+      .command_name = "play", .help_message_for_command = "play <song_name>.mp3", .app_cli_handler = cli__mp3_play};
+
+  // TODO: Add the CLI handler:
+  app_cli__add_command_handler(&sj2_cli_struct, &your_cli_struct);
+  app_cli__add_command_handler(&sj2_cli_struct, &mp3_player);
   // Add your CLI commands in descending sorted order to make them appear in sorted order
   app_cli__add_command_handler(&sj2_cli_struct, &uart3_transmit);
   app_cli__add_command_handler(&sj2_cli_struct, &task_list);

@@ -51,3 +51,38 @@ uint16_t adc__get_adc_value(adc_channel_e channel_num) {
 
   return result;
 }
+
+// void adc__enable_burst_mode(void) {
+//   LPC_ADC->CR |= (1 << 16);      // burst mode
+//   LPC_ADC->CR &= ~(0b111 << 24); // clear START bits
+// }
+
+// uint16_t adc__get_channel_reading_with_burst_mode(adc_channel_e channel_number) {
+//   uint16_t result = 1;
+//   LPC_ADC->CR |= (1 << 5); // set channel
+//   result = ((LPC_ADC->DR[5] >> 4)) & 0x0FFF;
+
+//   return result;
+// }
+
+// TODO: Open up existing adc.h file
+// TODO: Add the following API
+
+/**
+ * Implement a new function called adc__enable_burst_mode() which will
+ * set the relevant bits in Control Register (CR) to enable burst mode.
+ */
+void adc__enable_burst_mode(void) {
+  LPC_ADC->CR |= (1 << 16);
+  LPC_ADC->CR &= ~(0b111 << 24);
+}
+
+/**
+ * Note:
+ * The existing ADC driver is designed to work for non-burst mode
+ *
+ * You will need to write a routine that reads data while the ADC is in burst mode
+ * Note that in burst mode, you will NOT read the result from the GDR register
+ * Read the LPC user manual for more details
+ */
+uint16_t adc__get_channel_reading_with_burst_mode(uint8_t channel_number) { return (LPC_ADC->DR[channel_number] >> 4); }
